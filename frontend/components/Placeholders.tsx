@@ -19,7 +19,7 @@ export function PlaceholdersAndVanishInputDemo() {
     console.log("submitted");
   };
   return (
-    <div className="h-[40rem] px-4">
+    <div className="px-4">
       <PlaceholdersAndVanishInput
         placeholders={placeholders}
         onChange={handleChange}

@@ -1,13 +1,18 @@
 "use client"
 import React from 'react'
-import { Spotlight } from '@/components/ui/Spotlight'
 import { Cover } from '@/components/ui/cover'
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect'
 import Globe from 'react-globe.gl'
 import { PlaceholdersAndVanishInputDemo } from '@/components/Placeholders'
+import EncryptButton from '@/components/ui/EncryptButton'
+import { EvervaultCardDemo } from '@/components/EverVaultCardDemo'
+
+const words = `Elevate your events with eco-friendly brilliance—our AI empowers planners to turn every celebration into a sustainable masterpiece.`;
+
 
 const HeroPage = () => {
   return (
-    <div className="h-screen flex flex-col md:flex-row w-full dark:bg-black bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1]  justify-center">
+    <div className="h-screen flex flex-col top-0 md:flex-row w-full dark:bg-black bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1]  justify-center">
       <div className=" pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div className="flex w-full h-full">
         <div className="w-1/2 flex flex-col justify-start mt-32 items-center px-8 ">
@@ -18,8 +23,10 @@ const HeroPage = () => {
           <div className='w-full mt-10'>
             <PlaceholdersAndVanishInputDemo />
           </div>
+          <div className='w-full mt-24'>
+            <EvervaultCardDemo />
+          </div>
         </div>
-        
         <div className="w-1/2 ml-24 pb-32 flex justify-start items-center px-8">
         <Globe
             height={700}
