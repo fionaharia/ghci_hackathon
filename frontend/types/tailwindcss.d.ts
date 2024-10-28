@@ -1,6 +1,3 @@
 declare module 'tailwindcss/lib/util/flattenColorPalette' {
-  const flattenColorPalette: any;
-  export default flattenColorPalette;
+  export function customFlattenColorPalette(colors: Record<string, any>): Record<string, string>;
 }
-
-declare module 'framer-motion';
