@@ -135,7 +135,7 @@ export const Cover = ({
           className
         )}
       >
-        <span className="bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 text-transparent bg-clip-text">
+        <span className="bg-gradient-to-r py-4 from-blue-900 via-blue-700 to-green-800 text-transparent bg-clip-text">
           {children}
         </span>
       </motion.span>
