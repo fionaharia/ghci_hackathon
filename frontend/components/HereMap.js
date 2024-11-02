@@ -55,7 +55,19 @@ const HereMap = () => {
 
       // Resize the map when the window is resized
       window.addEventListener('resize', () => map.getViewPort().resize());
-      
+
+      const addMarker = (latitude, longitude) => {
+        const marker = new window.H.map.Marker({ lat: latitude, lng: longitude });
+        map.addObject(marker);
+      };
+
+      addMarker(52.5159, 13.3777); // Brandenburg Gate
+      addMarker(52.5200, 13.4050); // Berlin Main Station
+      addMarker(52.5232, 13.4049); // Berlin TV Tower
+      addMarker(52.5149, 13.3747); // Brandenburg Gate
+      addMarker(52.5110, 13.4020); // Berlin Main Station
+      addMarker(52.5122, 13.3039); // Berlin TV Tower
+
       console.log('Map initialized successfully');
     };
 
@@ -63,7 +75,7 @@ const HereMap = () => {
   }, []);
 
   return (
-    <div id="map" style={{ width: '100%', height: '450px', background: 'grey' }}></div>
+    <div id="map" style={{ width: '100%', height: '100%', background: 'grey' }}></div>
   );
 };
 
