@@ -27,9 +27,6 @@ const MaterialsSelectionList = () => {
           <option value="Decor">Decor</option>
           <option value="Furniture">Furniture</option>
           <option value="Cutlery">Cutlery</option>
-          <option value="3">Eco Score 3+</option>
-          <option value="4">Eco Score 4+</option>
-          <option value="5">Eco Score 5</option>
         </select>
       </div>
 
@@ -55,11 +52,6 @@ const MaterialsSelectionList = () => {
               ))}
             </div>
 
-            {/* Buttons */}
-            <div className="space-x-2">
-              <button className="text-sm text-green-500 underline">Alternatives</button>
-              <button className="text-sm text-blue-500 underline">Supplier Info</button>
-            </div>
           </li>
         ))}
       </ul>
