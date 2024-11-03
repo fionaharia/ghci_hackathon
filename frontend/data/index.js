@@ -63,3 +63,11 @@ export const occasionType = [
   "Rooftops",
   "Outdoor Events"
 ];
+
+export const lifecycleImpact = [
+  "Paper Cup",
+  "Plastic Cup",
+  "Glass Bottle",
+  "Aluminum Can",
+  "Stainless Steel Cutlery"
+];
