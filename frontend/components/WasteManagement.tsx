@@ -7,7 +7,7 @@ const WasteManagementOptions = () => {
   const [selectedOption, setSelectedOption] = useState(wasteOptions[0]);
 
   return (
-    <div className="border-2 border-white p-6 rounded-lg text-gray-200">
+    <div className="border-2 border-white px-8 py-5 rounded-lg text-gray-200">
       <h2 className="text-2xl font-semibold mb-2">Waste Management Options</h2>
       <p className="text-sm text-gray-400 mb-4">
         Guidance on sustainable waste disposal practices.
@@ -31,7 +31,7 @@ const WasteManagementOptions = () => {
         <p className="text-gray-400">{selectedOption.impact}</p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-2">
         <p className="font-medium">Estimated Cost:</p>
         <p className="text-gray-400">{selectedOption.estimatedCost}</p>
       </div>
