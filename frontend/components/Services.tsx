@@ -15,7 +15,7 @@ export function BentoGridSecondDemo() {
     <div className="h-screen flex flex-col justify-center items-center top-0  w-full dark:bg-backblue bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1] ">
       <div className="pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="text-white uppercase font-bold text-4xl">
-          You bring the vision, we bring the <span className="bg-gradient-to-r py-4 from-blue-900 via-blue-700 to-green-800 text-transparent bg-clip-text">green</span>
+          You bring the <span className="bg-gradient-to-r py-4 from-blue-900 via-blue-700 to-green-800 text-transparent bg-clip-text">vision</span>, we bring the <span className="bg-gradient-to-r py-4 from-blue-900 via-blue-700 to-green-800 text-transparent bg-clip-text">green</span>
         </div>
         <div className="text-white font-medium mt-5 flex justify-center text-center items-center mb-10 text-md mx-auto container">
         Sustainable event planning made easy with AI-powered venue selection, eco-materials, and energy-saving options        </div>
