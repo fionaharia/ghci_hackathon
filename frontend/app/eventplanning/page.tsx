@@ -23,32 +23,36 @@ const EventPlanning = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async () => {
     try {
-      console.log("Sending data:", formData);
-      const response = await axios.post("http://127.0.0.1:5000/submit_event", formData, {
-        headers: { 
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("Response:", response.data);
-    } catch (err: any) {  // Type as 'any' for compatibility
-      if (err?.response) {
-        // Server responded with error
-        console.error("Server responded with error:", {
-          data: err.response.data,
-          status: err.response.status
+        console.log("Sending data:", formData);
+        const response = await axios.post("http://127.0.0.1:5000/submit_event", formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
-      } else if (err?.request) {
-        // Request was made but no response
-        console.error("No response received:", err.request);
-      } else {
-        // Error setting up the request
-        console.error("Error:", err?.message || "An unknown error occurred");
-      }
+
+        console.log("Response:", response.data);
+        
+        // Redirect to the /submit_event page after successful submission
+        if (response.status === 200) {
+            window.location.href = "http://127.0.0.1:5000/submit_event"; // Redirect to this page
+        }
+    } catch (err) {  
+        if (err?.response) {
+            console.error("Server responded with error:", {
+                data: err.response.data,
+                status: err.response.status
+            });
+        } else if (err?.request) {
+            console.error("No response received:", err.request);
+        } else {
+            console.error("Error:", err?.message || "An unknown error occurred");
+        }
     }
-  };
+};
+
+  
 
   return (
     <div className="flex flex-row ml-20 mt-20 h-screen text-white">
