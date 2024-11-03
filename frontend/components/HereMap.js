@@ -5,9 +5,10 @@ const HereMap = ({ showMarkers }) => {
   const mapRef = useRef(null);
   const markersRef = useRef([]);
 
+  require('dotenv').config();
   useEffect(() => {
-    const apiKey = '4yqspZLcHFx67Idvj0-rH8cVRldQIuPoddKOoS2PI_I';
 
+    const apiKey = process.env.API_KEY;
     const loadScript = (src) => {
       return new Promise((resolve) => {
         const script = document.createElement('script');

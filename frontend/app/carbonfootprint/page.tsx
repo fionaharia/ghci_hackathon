@@ -8,20 +8,19 @@ const CarbonFootprint = () => {
   const [modeOfTransport, setModeOfTransport] = useState("car");
   const [cateringType, setCateringType] = useState("meat-based");
   const [materialsUsed, setMaterialsUsed] = useState("");
-  const [lifecycleitemImpact, setLifecycleitemImpact] = useState("Paper Cup");
+  const [lifecycleitemImpact, setLifecycleitemImpact] = useState<string[]>([]);
   const [cert, setCert] = useState("LEED");
 
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/sustainability_report.pdf'; // Path to your PDF in the public folder
-    link.download = 'analysis_report.pdf'; // Desired name for the downloaded file
+    const link = document.createElement("a");
+    link.href = "/sustainability_report.pdf"; // Path to your PDF in the public folder
+    link.download = "analysis_report.pdf"; // Desired name for the downloaded file
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const travelDetails = {
       travelDistance,
@@ -29,20 +28,18 @@ const CarbonFootprint = () => {
       cateringType,
       materialsUsed,
       lifecycleitemImpact,
-      cert
+      cert,
     };
     console.log(travelDetails);
     // You can add additional logic to handle the travel details (e.g., sending to an API)
   };
-;
-
   return (
     <div className="h-screen flex flex-col top-0 w-full dark:bg-backblue bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1] justify-start items-center">
       <div className="pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div className="font-bold text-5xl mt-5">Carbon Footprint Calculator</div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col mt-10 w-full max-w-md"
+        className="flex flex-col mt-5 w-full max-w-md"
       >
         <div className="mb-4">
           <label className="block text-white" htmlFor="travelDistance">
@@ -107,8 +104,12 @@ const CarbonFootprint = () => {
           />
         </div>
 
-        <div className="font-extrabold text-center text-white text-xl mb-8">YOUR CARBON FOOTPRINT: 72</div>
-        <div className="font-bold text-5xl mt-5 text-center mb-8">Lifecycle Impact</div>
+        <div className="font-extrabold text-center text-white text-xl mb-8">
+          YOUR CARBON FOOTPRINT: 72
+        </div>
+        <div className="font-bold text-5xl mt-5 text-center mb-8">
+          Lifecycle Impact
+        </div>
 
         <div className="mb-4">
           <label className="block text-white" htmlFor="lifecycleImpact">
@@ -116,8 +117,15 @@ const CarbonFootprint = () => {
           </label>
           <select
             id="lifecycleImpact"
-            value={lifecycleitemImpact} // Use lifecycleitemImpact state here
-            onChange={(e) => setLifecycleitemImpact(e.target.value)} // Update with your state handling
+            multiple
+            value={lifecycleitemImpact} // lifecycleitemImpact should be an array to store multiple values
+            onChange={(e) => {
+              const selectedOptions = Array.from(
+                e.target.selectedOptions,
+                (option) => option.value
+              );
+              setLifecycleitemImpact(selectedOptions); // Update state with array of selected values
+            }}
             required
             className="w-full p-2 border text-black border-white rounded"
           >

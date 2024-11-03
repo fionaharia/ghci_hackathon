@@ -99,7 +99,7 @@ const EventPlanning = () => {
             </div>
           </button>
         </div>
-
+        {/* 
         {showAnalyzeButton && (
           <div className="justify-center flex mt-4 items-center">
             <button
@@ -109,7 +109,7 @@ const EventPlanning = () => {
               Analyze the Sustainability
             </button>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="w-1/2 ml-10 pr-16">
