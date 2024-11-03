@@ -5,12 +5,14 @@ import Globe from "react-globe.gl";
 import { PlaceholdersAndVanishInputDemo } from "@/components/Placeholders";
 import { words } from "@/data";
 import Link from "next/link";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 
 const HeroPage = () => {
   return (
-    <div className="h-screen flex flex-col top-0 md:flex-row w-full dark:bg-black bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1] justify-center">
+    <div className="h-screen flex flex-col top-0 md:flex-row w-full dark:bg-backblue bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1] justify-center">
       <div className="pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <Spotlight />
       <div className="flex w-full h-full justify-center items-center">
         <div className="w-1/2 flex flex-col justify-start items-center">
           <h1 className="text-5xl 2xl:text-6xl z-100  font-semibold text-left text-white">

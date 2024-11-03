@@ -1,5 +1,7 @@
-# Dependency directories
+# Node modules
 node_modules/
+
+# Yarn and npm
 .pnp
 .pnp.js
 
@@ -44,3 +46,10 @@ jest/
 # IDE specific
 .vscode/
 *.swp
+
+# Other IDEs
+.idea/
+*.iml
+
+# Python virtual environment
+venv/
