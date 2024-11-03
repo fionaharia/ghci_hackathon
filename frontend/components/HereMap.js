@@ -16,8 +16,14 @@ const HereMap = ({ venues, showMarkers }) => {
         const script = document.createElement('script');
         script.src = src;
         script.async = true;
-        script.onload = resolve;
-        script.onerror = reject;
+        script.onload = () => {
+          console.log(`Loaded script: ${src}`);
+          resolve();
+        };
+        script.onerror = (err) => {
+          console.error(`Error loading script: ${src}`, err);
+          reject(err);
+        };
         document.head.appendChild(script);
       });
     };
@@ -34,17 +40,17 @@ const HereMap = ({ venues, showMarkers }) => {
 
         console.log('Scripts loaded');
 
+        // Check if H is defined
+        if (!window.H) {
+          throw new Error("HERE Maps API not loaded properly.");
+        }
+
         // Initialize the platform
-        const platform = new window.H.service.Platform({
-          apikey: apiKey
-        });
+        const platform = new window.H.service.Platform({ apikey: apiKey });
 
         const defaultLayers = platform.createDefaultLayers();
-
-        // Get map container
         const mapContainer = document.getElementById('map');
 
-        // Create the map
         const map = new window.H.Map(
           mapContainer,
           defaultLayers.vector.normal.map,
@@ -57,13 +63,9 @@ const HereMap = ({ venues, showMarkers }) => {
 
         mapRef.current = map;
 
-        // Enable map interaction (pan, zoom, etc.)
         const behavior = new window.H.mapevents.Behavior(new window.H.mapevents.MapEvents(map));
-        
-        // Add UI components (zoom, etc.)
         const ui = window.H.ui.UI.createDefault(map, defaultLayers);
 
-        // Force a resize to ensure the map renders properly
         setTimeout(() => {
           map.getViewPort().resize();
         }, 1000);
@@ -81,14 +83,13 @@ const HereMap = ({ venues, showMarkers }) => {
   useEffect(() => {
     if (showMarkers && mapRef.current && venues.length > 0 && window.H) {
       console.log('Adding markers');
-      
+
       // Clear existing markers
       markersRef.current.forEach(marker => {
         mapRef.current.removeObject(marker);
       });
       markersRef.current = [];
 
-      // Create a custom marker icon
       const svgMarkup = `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10" fill="#4A90E2" stroke="white" stroke-width="2"/>
       </svg>`;
@@ -98,15 +99,12 @@ const HereMap = ({ venues, showMarkers }) => {
         anchor: { x: 12, y: 12 }
       });
 
-      // Add new markers with custom icon
       venues.forEach((venue, index) => {
-        // Create marker with custom icon
         const marker = new window.H.map.Marker(
           { lat: venue.lat, lng: venue.lng },
           { icon: icon, data: venue.name }
         );
-        
-        // Add click event to show venue name
+
         marker.addEventListener('tap', (evt) => {
           const bubble = new window.H.ui.InfoBubble(evt.target.getGeometry(), {
             content: evt.target.getData()
@@ -123,7 +121,6 @@ const HereMap = ({ venues, showMarkers }) => {
         console.log(`Added marker ${index + 1}:`, venue);
       });
 
-      // Adjust viewport to show all markers
       if (markersRef.current.length > 0) {
         const group = new window.H.map.Group();
         markersRef.current.forEach(marker => group.addObject(marker));

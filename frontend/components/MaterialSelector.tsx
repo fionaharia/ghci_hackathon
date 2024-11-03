@@ -3,7 +3,7 @@ import { FaInfoCircle, FaStar } from 'react-icons/fa';
 import {materials} from "../data/index"
 
 const MaterialsSelectionList = () => {
-  const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState('Decor');
 
   const filteredMaterials = materials.filter(item => 
     filter === 'All' || item.category === filter || item.ecoScore >= parseInt(filter)
