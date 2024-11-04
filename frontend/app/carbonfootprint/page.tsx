@@ -1,4 +1,3 @@
-// components/TravelForm.js
 "use client";
 import { lifecycleImpact } from "@/data"; // Make sure this array is correctly exported from "@/data"
 import { useState } from "react";
@@ -10,6 +9,7 @@ const CarbonFootprint = () => {
   const [materialsUsed, setMaterialsUsed] = useState("");
   const [lifecycleitemImpact, setLifecycleitemImpact] = useState<string[]>([]);
   const [cert, setCert] = useState("LEED");
+  const [carbonFootprintVisible, setCarbonFootprintVisible] = useState(false); // New state variable for visibility
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -18,6 +18,10 @@ const CarbonFootprint = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleShowCarbonFootprint = () => {
+    setCarbonFootprintVisible(true); // Show the carbon footprint when the button is clicked
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
@@ -33,6 +37,7 @@ const CarbonFootprint = () => {
     console.log(travelDetails);
     // You can add additional logic to handle the travel details (e.g., sending to an API)
   };
+
   return (
     <div className="h-screen flex flex-col top-0 w-full dark:bg-backblue bg-white dark:bg-grid-white/[0.09] bg-grid-black/[0.1] justify-start items-center">
       <div className="pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -104,9 +109,22 @@ const CarbonFootprint = () => {
           />
         </div>
 
-        <div className="font-extrabold text-center text-white text-xl mb-8">
-          YOUR CARBON FOOTPRINT: 72
-        </div>
+        {!carbonFootprintVisible && ( // Only show the button if carbon footprint is not visible
+          <button
+            type="button" // Change type to button to prevent form submission
+            onClick={handleShowCarbonFootprint} // Call the function to show carbon footprint
+            className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+          >
+            SHOW CARBON FOOTPRINT
+          </button>
+        )}
+
+        {carbonFootprintVisible && ( // Show the carbon footprint when visible
+          <div className="font-extrabold text-center text-white text-xl mb-8">
+            YOUR CARBON FOOTPRINT: 67%
+          </div>
+        )}
+
         <div className="font-bold text-5xl mt-5 text-center mb-8">
           Lifecycle Impact
         </div>

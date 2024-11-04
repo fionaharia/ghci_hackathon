@@ -1,14 +1,21 @@
-"use client"
-import React, { useEffect, useRef } from 'react';
+"use client";
+import React, { useEffect, useRef, useState } from 'react';
 
 const HereMap = ({ showMarkers }) => {
   const mapRef = useRef(null);
   const markersRef = useRef([]);
+  const [isClient, setIsClient] = useState(false); // State to track client rendering
 
-  require('dotenv').config();
   useEffect(() => {
+    // Set the state to indicate the component has mounted
+    setIsClient(true);
+  }, []);
 
-    const apiKey = process.env.API_KEY;
+  useEffect(() => {
+    if (!isClient) return; // Exit if not on the client side
+
+    const apiKey = "4yqspZLcHFx67Idvj0-rH8cVRldQIuPoddKOoS2PI_I";
+    
     const loadScript = (src) => {
       return new Promise((resolve) => {
         const script = document.createElement('script');
@@ -57,7 +64,7 @@ const HereMap = ({ showMarkers }) => {
     };
 
     initMap();
-  }, []);
+  }, [isClient]); // Run effect when component is client-side
 
   useEffect(() => {
     if (mapRef.current && showMarkers) {
@@ -70,9 +77,6 @@ const HereMap = ({ showMarkers }) => {
         { lat: 52.5159, lng: 13.3777 }, // Brandenburg Gate
         { lat: 52.5200, lng: 13.4050 }, // Berlin Main Station
         { lat: 52.5232, lng: 13.4049 }, // Berlin TV Tower
-        { lat: 52.5149, lng: 13.3747 }, // Brandenburg Gate
-        { lat: 52.5110, lng: 13.4020 }, // Berlin Main Station
-        { lat: 52.5122, lng: 13.3039 }, // Berlin TV Tower
       ];
 
       locations.forEach(({ lat, lng }) => {
@@ -82,6 +86,9 @@ const HereMap = ({ showMarkers }) => {
       });
     }
   }, [showMarkers]);
+
+  // Only render the map container on the client side
+  if (!isClient) return null;
 
   return (
     <div id="map" style={{ width: '100%', height: '100%', background: 'grey' }}></div>
