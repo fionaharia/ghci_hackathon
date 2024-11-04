@@ -22,7 +22,7 @@ EcoSphere is an innovative web application designed to assist users in planning 
 
 ## Technologies Used
 
-- **Frontend**: Next.js, React.js
+- **Frontend**: Next.js, React.js, TailwindCSS, Vite
 - **Backend**: Flask, Cloudinary
 - **Machine Learning**: TensorFlow, Torch, scikit learn
 
@@ -38,3 +38,13 @@ To run EcoSphere locally, follow these steps:
    npm run dev
    cd backend
    python app.py
+
+## Screenshots of the Project
+
+![unnamed](https://github.com/user-attachments/assets/e3e5ef05-0c3e-462b-a697-238a0dc1d13a)
+![unnamed (1)](https://github.com/user-attachments/assets/8aa35449-34ab-4108-916e-5aa141c60fd4)
+![unnamed (2)](https://github.com/user-attachments/assets/a75b37aa-adfc-4b4a-adab-d78a512cf675)
+![unnamed (3)](https://github.com/user-attachments/assets/946fd665-39cb-454b-9705-e9485d171ef6)
+
+
+
